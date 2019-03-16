@@ -3,7 +3,7 @@ import PropTypes               from 'prop-types';
 import { Container, Row, Col } from "../external/Grid";
 import { DropdownLink }        from "../Dropdown";
 
-export const Navbar = ({ brand }) => {
+export const Navbar = ({ brand, categories }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">{ brand }</a>
@@ -16,7 +16,7 @@ export const Navbar = ({ brand }) => {
         <Container>
           <Row>
             <Col md={ 4 }>
-              <DropdownLink/>
+              <DropdownLink categories={ categories }/>
             </Col>
 
             <Col md={ 8 }>
@@ -33,7 +33,8 @@ export const Navbar = ({ brand }) => {
 };
 
 Navbar.propTypes = {
-  brand: PropTypes.string
+  brand:      PropTypes.string,
+  categories: PropTypes.array.isRequired
 };
 
 Navbar.defaultProps = {

@@ -1,12 +1,6 @@
 import { combineReducers } from 'redux';
-
-export const videos = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import { videoCategories } from "./reducers/videoCategories";
 
 export default combineReducers({
-  videos
+  videoCategories
 });
