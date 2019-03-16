@@ -1,5 +1,7 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React                   from 'react';
+import PropTypes               from 'prop-types';
+import { Container, Row, Col } from "../external/Grid";
+import { DropdownLink }        from "../Dropdown";
 
 export const Navbar = ({ brand }) => {
   return (
@@ -11,12 +13,20 @@ export const Navbar = ({ brand }) => {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <div className="container">
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
+        <Container>
+          <Row>
+            <Col md={ 4 }>
+              <DropdownLink/>
+            </Col>
+
+            <Col md={ 8 }>
+              <form className="form-inline my-2 my-lg-0">
+                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </nav>
   );
