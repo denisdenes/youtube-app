@@ -12,7 +12,7 @@ const getVideoCategoriesLoading = () => {
   }
 };
 
-const getVideoCategoriesLoadingSuccess = (videoCategories) => {
+const getVideoCategoriesSuccess = (videoCategories) => {
   return {
     type:    GET_VIDEO_CATEGORIES_SUCCESS,
     payload: videoCategories
@@ -31,7 +31,7 @@ export const getVideoCategories = () => {
     try {
       dispatch(getVideoCategoriesLoading());
       const res = await youtubeAxios.get('/videoCategories', { params: { regionCode: 'US' } });
-      dispatch(getVideoCategoriesLoadingSuccess(res));
+      dispatch(getVideoCategoriesSuccess(res));
     } catch (error) {
       dispatch(getVideoCategoriesError(error.response));
       MyError(error);

@@ -4,13 +4,17 @@ import { Container }          from "../../components/external/Grid";
 import { Spinner }            from "../../components/Spinner";
 import { Navbar }             from "../../components/Navbar";
 import { getVideoCategories } from "../../data/actions/videoCategories";
+import { getVideos }          from "../../data/actions/videos";
 
 class HomeClass extends React.Component {
   state = { loading: true };
 
   componentDidMount() {
-    this.props.getVideoCategories()
-        .then(() => this.setState({ loading: false }))
+    const { getVideos, getVideoCategories} = this.props;
+
+    Promise.all([getVideos(), getVideoCategories()])
+           .then(() => this.setState({ loading: false }))
+
   }
 
   render() {
@@ -28,10 +32,11 @@ class HomeClass extends React.Component {
   }
 }
 
-const mapStateToProps = ({ videoCategories }) => {
+const mapStateToProps = ({ videos, videoCategories }) => {
   return {
+    videos:          videos,
     videoCategories: videoCategories.data
   }
 };
 
-export const Home = connect(mapStateToProps, { getVideoCategories })(HomeClass);
+export const Home = connect(mapStateToProps, { getVideos, getVideoCategories })(HomeClass);
