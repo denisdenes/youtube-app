@@ -2,7 +2,7 @@ import React                   from 'react';
 import { connect }             from 'react-redux';
 import { Container, Row, Col } from "../../components/external/Grid";
 import { Spinner }             from "../../components/Spinner";
-import { Navbar }              from "../../components/Navbar";
+import { Navbar }              from "../Navbar";
 import { VideoCard }           from "../../components/VideoCard";
 import { getVideoCategories }  from "../../data/actions/videoCategories";
 import { getVideos }           from "../../data/actions/videos";

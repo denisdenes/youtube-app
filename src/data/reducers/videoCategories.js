@@ -18,10 +18,21 @@ export const videoCategories = (state = initialState, { type, payload }) => {
         videoCategoriesLoading: true
       };
     case GET_VIDEO_CATEGORIES_SUCCESS:
+      let videoCategories = [];
+
+      payload.data.items.map(item => {
+        let category = {
+          id:    item.id,
+          value: item.id,
+          label: item.snippet.title
+        };
+        return videoCategories.push(category);
+      });
+
       return {
         ...state,
         videoCategoriesLoading: false,
-        data:                   payload.data.items
+        data:                   videoCategories
       };
     case GET_VIDEO_CATEGORIES_ERROR:
       return {
