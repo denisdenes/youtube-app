@@ -36,7 +36,7 @@ export const getVideos = () => {
           chart: 'mostPopular',
           maxResults: 10,
           regionCode: 'US',
-          videoCategoryId: '20'
+          videoCategoryId: '1'
         }
       });
 

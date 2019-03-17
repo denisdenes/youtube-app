@@ -18,7 +18,6 @@ export const videos = (state = initialState, { type, payload }) => {
         videosLoading: true
       };
     case GET_VIDEOS_SUCCESS:
-      console.log(payload.data.items);
       return {
         ...state,
         videosLoading: false,
