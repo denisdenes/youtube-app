@@ -1,16 +1,15 @@
-import React                   from 'react';
-import PropTypes               from 'prop-types';
-import { Container, Row, Col } from "../../components/external/Grid";
-import { Searchbar }           from "./SearchBar";
-import { DropdownLink }        from "../../components/Dropdown";
-import Logo                    from '../../assets/youtube_logo3.png';
+import React         from 'react';
+import PropTypes     from 'prop-types';
+import { Row, Col }  from "../../components/external/Grid";
+import { Searchbar } from "./SearchBar";
+import Logo          from '../../assets/youtube_logo3.png';
 
 export const Navbar = ({ brand, categories }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Row style={ { flexGrow: '1' } }>
-          <Col md={ 2 }>
+          <Col md={ 3 }>
             <a className="navbar-brand" href="#">
               <img src={ Logo } width="70" alt="logo"/> { brand }
             </a>
@@ -22,11 +21,11 @@ export const Navbar = ({ brand, categories }) => {
             </button>
           </Col>
 
-          <Col md={ 10 } className="mt-1">
+          <Col md={ 9 } className="mt-1">
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <Row style={ { flexGrow: '1' } }>
-                <Col>
-                  <Searchbar categories={categories}/>
+                <Col xs={ 12 }>
+                  <Searchbar categories={ categories }/>
                 </Col>
               </Row>
             </div>
