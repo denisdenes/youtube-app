@@ -16,7 +16,7 @@ export const Navbar = ({ brand, categories }) => {
         <Container>
           <Row>
             <Col md={ 4 }>
-              <DropdownLink categories={ categories }/>
+              <DropdownLink title="Categories" categories={ categories }/>
             </Col>
 
             <Col md={ 8 }>

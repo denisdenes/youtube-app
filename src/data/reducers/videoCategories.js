@@ -10,8 +10,8 @@ const initialState = {
   data:                   []
 };
 
-export const videoCategories = (state = initialState, action) => {
-  switch (action.type) {
+export const videoCategories = (state = initialState, { type, payload }) => {
+  switch (type) {
     case GET_VIDEO_CATEGORIES_LOADING:
       return {
         ...state,
@@ -21,13 +21,13 @@ export const videoCategories = (state = initialState, action) => {
       return {
         ...state,
         videoCategoriesLoading: false,
-        data:                   [ ...action.videoCategories.data.items ]
+        data:                   payload.data.items
       };
     case GET_VIDEO_CATEGORIES_ERROR:
       return {
         ...state,
         videoCategoriesLoading: false,
-        videoCategoriesError:   action.error
+        videoCategoriesError:   payload.data.error.message
       };
     default:
       return state;
