@@ -1,15 +1,23 @@
 import React        from 'react';
 import PropTypes    from 'prop-types';
 import TextTruncate from 'react-text-truncate';
+import { Link }     from "react-router-dom";
 import './style.scss';
 
-export const VideoCard = ({ thumbnail, title, author }) => {
+export const VideoCard = ({ thumbnail, title, author, id }) => {
   return (
     <div className="card my-2">
-      <img className="card-img-top video_thumbnail" src={ thumbnail } alt={ title }/>
+      <Link to={ `/videos/${ id }` }>
+        <img className="card-img-top video_thumbnail" src={ thumbnail } alt={ title }/>
+      </Link>
+
 
       <div className="card-body">
-        <b><TextTruncate line={ 1 } truncateText="…" text={ title }/></b>
+        <b>
+          <Link to={ `/videos/${ id }` }>
+            <TextTruncate line={ 1 } truncateText="…" text={ title }/>
+          </Link>
+        </b>
 
         <TextTruncate line={ 1 } truncateText="…" text={ author }/>
       </div>

@@ -2,7 +2,6 @@ import React                          from 'react';
 import { connect }                    from 'react-redux';
 import { Container, Row, Col }        from "../../components/external/Grid";
 import { Spinner }                    from "../../components/Spinner";
-import { Navbar }                     from "../Navbar";
 import { VideoCard }                  from "../../components/VideoCard";
 import { getVideoCategories }         from "../../data/actions/videoCategories";
 import { getVideos, getSearchVideos } from "../../data/actions/videos";
@@ -33,7 +32,6 @@ class HomeClass extends React.Component {
 
     return (
       <>
-        <Navbar brand="Youtube app" categories={ this.props.videoCategories }/>
         <Container>
           <Row className="my-2">
             { (videos && videos.length) ? this.display_videos(videos) : this.display_error() }
@@ -53,6 +51,7 @@ class HomeClass extends React.Component {
                 thumbnail={ video.snippet.thumbnails.medium.url }
                 author={ video.snippet.channelTitle }
                 title={ video.snippet.title }
+                id={ video.id }
                 key={ Math.random() }
               />
             </Col>

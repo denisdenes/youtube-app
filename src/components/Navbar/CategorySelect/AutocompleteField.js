@@ -3,8 +3,8 @@ import Select from "react-select";
 
 export class AutocompleteField extends React.Component {
   render() {
-    const { name, label, options, isMulti, error, touched, form, field } = this.props;
-    const { values, setFieldValue, handleChange, submitForm }            = form;
+    const { name, label, options, isMulti, form, field }      = this.props;
+    const { values, setFieldValue, handleChange, submitForm } = form;
 
     return (
       <Select

@@ -1,14 +1,11 @@
-import React                                 from 'react';
-import PropTypes                             from 'prop-types';
-import { connect }                           from 'react-redux';
-import { Row, Col }                          from "../../components/external/Grid";
-import { Searchbar }                         from "./SearchBar";
-import Logo                                  from '../../assets/youtube_logo3.png';
-import { getSearchVideos, searchVideoQuery } from "../../data/actions/videos";
-import { selectVideoCategory }               from "../../data/actions/videoCategories";
-import { CategorySelect }                    from "./CategorySelect";
+import React              from 'react';
+import PropTypes          from 'prop-types';
+import { Row, Col }       from "../../components/external/Grid";
+import { Searchbar }      from "./SearchBar";
+import { CategorySelect } from "./CategorySelect";
+import Logo               from '../../assets/youtube_logo3.png';
 
-export class NavbarClass extends React.Component {
+export class Navbar extends React.Component {
   render() {
     const { brand, categories, searchVideoQueryString, selectedVideoCategory } = this.props;
     return (
@@ -16,7 +13,7 @@ export class NavbarClass extends React.Component {
         <div className="container">
           <Row style={ { flexGrow: '1' } }>
             <Col md={ 3 }>
-              <a className="navbar-brand" href="#">
+              <a className="navbar-brand" href="/">
                 <img src={ Logo } width="70" alt="logo"/> { brand }
               </a>
 
@@ -60,20 +57,9 @@ export class NavbarClass extends React.Component {
   }
 }
 
-const mapStateToProps = ({ videos, videoCategories, selectedVideoCategory, searchVideoQuery }) => {
-  return {
-    selectedVideoCategory,
-    searchVideoQueryString: searchVideoQuery,
-    videos:                 videos.data,
-    videoCategories:        videoCategories.data
-  }
-};
-
-export const Navbar = connect(mapStateToProps, { getSearchVideos, selectVideoCategory, searchVideoQuery })(NavbarClass);
-
 Navbar.propTypes = {
   brand:      PropTypes.string,
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
 };
 
 Navbar.defaultProps = {
