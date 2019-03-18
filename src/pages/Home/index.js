@@ -11,9 +11,9 @@ class HomeClass extends React.Component {
   state = { loading: true };
 
   componentDidMount() {
-    const { getVideos, getVideoCategories } = this.props;
+    const { selectedVideoCategory, getVideos, getVideoCategories } = this.props;
 
-    Promise.all([ getVideos(), getVideoCategories() ])
+    Promise.all([ getVideos(selectedVideoCategory.id), getVideoCategories() ])
            .then(() => this.setState({ loading: false }))
 
   }
@@ -63,8 +63,9 @@ class HomeClass extends React.Component {
   };
 }
 
-const mapStateToProps = ({ videos, videoCategories }) => {
+const mapStateToProps = ({ selectedVideoCategory, videos, videoCategories }) => {
   return {
+    selectedVideoCategory,
     videos:          videos.data,
     videoCategories: videoCategories.data
   }

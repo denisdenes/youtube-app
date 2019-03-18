@@ -1,7 +1,7 @@
 import {
   GET_VIDEO_CATEGORIES_LOADING,
   GET_VIDEO_CATEGORIES_SUCCESS,
-  GET_VIDEO_CATEGORIES_ERROR
+  GET_VIDEO_CATEGORIES_ERROR,
 } from "../actions/types";
 
 const initialState = {

@@ -3,13 +3,12 @@ import { Field, Form, Formik } from "formik";
 import { Row, Col }            from "../../../components/external/Grid";
 import { AutocompleteField }   from "./AutocompleteField";
 
-export const Searchbar = ({ categories }) => {
+export const Searchbar = ({ initialValues, categories, onSubmit }) => {
   return (
     <Formik
-      initialValues={ {} }
-      // validationSchema={validationSchema}
+      initialValues={ { videoCategory: initialValues} }
       onSubmit={ values => {
-        console.log(values);
+        onSubmit(values)
       } }
       render={ ({
                   values,
@@ -36,7 +35,7 @@ export const Searchbar = ({ categories }) => {
 
             <Col xs={ 12 } sm={ 12 } lg={ 4 }>
               <Field
-                name='videoCategories'
+                name='videoCategory'
                 label='Categories'
                 options={ categories }
                 component={ AutocompleteField }

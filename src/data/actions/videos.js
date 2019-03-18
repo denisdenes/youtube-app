@@ -26,7 +26,8 @@ const getVideosError = (error) => {
   }
 };
 
-export const getVideos = () => {
+export const getVideos = (videoCategoryId=null) => {
+  console.log(videoCategoryId);
   return async (dispatch) => {
     try {
       dispatch(getVideosLoading());
@@ -36,7 +37,7 @@ export const getVideos = () => {
           chart: 'mostPopular',
           maxResults: 10,
           regionCode: 'US',
-          videoCategoryId: '1'
+          videoCategoryId: videoCategoryId
         }
       });
 
