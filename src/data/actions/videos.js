@@ -3,7 +3,8 @@ import { MyError }      from "../../utils/error";
 import {
   GET_VIDEOS_LOADING,
   GET_VIDEOS_SUCCESS,
-  GET_VIDEOS_ERROR
+  GET_VIDEOS_ERROR,
+  SEARCH_VIDEOS_QUERY
 }                       from "./types";
 
 const getVideosLoading = () => {
@@ -12,10 +13,10 @@ const getVideosLoading = () => {
   }
 };
 
-const getVideosSuccess = (videoCategories) => {
+const getVideosSuccess = (videos) => {
   return {
     type:    GET_VIDEOS_SUCCESS,
-    payload: videoCategories
+    payload: videos
   }
 };
 
@@ -26,8 +27,14 @@ const getVideosError = (error) => {
   }
 };
 
+export const searchVideoQuery = (query) => {
+  return {
+    type:    SEARCH_VIDEOS_QUERY,
+    payload: query
+  }
+};
+
 export const getVideos = (videoCategoryId=null) => {
-  console.log(videoCategoryId);
   return async (dispatch) => {
     try {
       dispatch(getVideosLoading());
@@ -38,6 +45,26 @@ export const getVideos = (videoCategoryId=null) => {
           maxResults: 10,
           regionCode: 'US',
           videoCategoryId: videoCategoryId
+        }
+      });
+
+      dispatch(getVideosSuccess(res));
+    } catch (error) {
+      dispatch(getVideosError(error.response));
+      MyError(error);
+    }
+  };
+};
+
+export const getSearchVideos = (query) => {
+  return async (dispatch) => {
+    try {
+      dispatch(getVideosLoading());
+
+      const res = await youtubeAxios.get('/search', {
+        params: {
+          maxResults: 10,
+          query
         }
       });
 

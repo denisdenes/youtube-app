@@ -1,14 +1,16 @@
-import React                   from 'react';
-import PropTypes               from 'prop-types';
-import { connect }             from 'react-redux';
-import { Row, Col }            from "../../components/external/Grid";
-import { Searchbar }           from "./SearchBar";
-import Logo                    from '../../assets/youtube_logo3.png';
-import { selectVideoCategory } from "../../data/actions/videoCategories";
+import React                                 from 'react';
+import PropTypes                             from 'prop-types';
+import { connect }                           from 'react-redux';
+import { Row, Col }                          from "../../components/external/Grid";
+import { Searchbar }                         from "./SearchBar";
+import Logo                                  from '../../assets/youtube_logo3.png';
+import { getSearchVideos, searchVideoQuery } from "../../data/actions/videos";
+import { selectVideoCategory }               from "../../data/actions/videoCategories";
+import { CategorySelect }                    from "./CategorySelect";
 
 export class NavbarClass extends React.Component {
   render() {
-    const { brand, categories, selectedVideoCategory } = this.props;
+    const { brand, categories, searchVideoQueryString, selectedVideoCategory } = this.props;
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
@@ -30,9 +32,14 @@ export class NavbarClass extends React.Component {
                 <Row style={ { flexGrow: '1' } }>
                   <Col xs={ 12 }>
                     <Searchbar
-                      initialValues={ selectedVideoCategory }
+                      initialValues={ { search: searchVideoQueryString } }
+                      onSubmit={ this.handleSearchOnSubmit.bind(this) }
+                    />
+
+                    <CategorySelect
+                      initialValues={ { videoCategory: selectedVideoCategory } }
                       categories={ categories }
-                      onSubmit={ this.getVideosByCategoryId.bind(this) }
+                      onSubmit={ this.handleCategoryOnSelect.bind(this) }
                     />
                   </Col>
                 </Row>
@@ -44,20 +51,25 @@ export class NavbarClass extends React.Component {
     );
   }
 
-  getVideosByCategoryId(values) {
+  handleSearchOnSubmit(values) {
+    this.props.searchVideoQuery(values.search);
+  }
+
+  handleCategoryOnSelect(values) {
     this.props.selectVideoCategory(values.videoCategory);
   }
 }
 
-const mapStateToProps = ({ videos, videoCategories, selectedVideoCategory }) => {
+const mapStateToProps = ({ videos, videoCategories, selectedVideoCategory, searchVideoQuery }) => {
   return {
     selectedVideoCategory,
-    videos:          videos.data,
-    videoCategories: videoCategories.data
+    searchVideoQueryString: searchVideoQuery,
+    videos:                 videos.data,
+    videoCategories:        videoCategories.data
   }
 };
 
-export const Navbar = connect(mapStateToProps, { selectVideoCategory })(NavbarClass);
+export const Navbar = connect(mapStateToProps, { getSearchVideos, selectVideoCategory, searchVideoQuery })(NavbarClass);
 
 Navbar.propTypes = {
   brand:      PropTypes.string,

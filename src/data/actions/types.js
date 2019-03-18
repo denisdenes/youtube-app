@@ -6,3 +6,5 @@ export const SELECT_VIDEO_CATEGORY        = 'select_video_category';
 export const GET_VIDEOS_LOADING = 'get_videos_loading';
 export const GET_VIDEOS_SUCCESS = 'get_videos_success';
 export const GET_VIDEOS_ERROR   = 'get_videos_error';
+
+export const SEARCH_VIDEOS_QUERY = 'search_videos_query';
