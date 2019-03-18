@@ -6,6 +6,9 @@ import { VideoProfile }                      from "./pages/VideoProfile";
 import { Navbar }                            from "./components/Navbar";
 import { getSearchVideos, searchVideoQuery } from "./data/actions/videos";
 import { selectVideoCategory }               from "./data/actions/videoCategories";
+import { Searchbar }                         from "./components/SearchBar";
+import { CategorySelect }                    from "./components/CategorySelect";
+import { Container, Row, Col }               from "./components/external/Grid";
 
 class AppClass extends Component {
   render() {
@@ -14,15 +17,41 @@ class AppClass extends Component {
         <BrowserRouter>
           <Navbar
             brand="Youtube app"
-            categories={ this.props.videoCategories }
             searchVideoQuery={ this.props.searchVideoQuery }
-            selectVideoCategory={ this.props.selectVideoCategory }
           />
+
+          <Container>
+            <Row className="mt-3 mb-5">
+              <Col xs={12} sm={6}>
+                <Searchbar
+                  initialValues={ { search: this.props.searchVideoQueryString } }
+                  onSubmit={ this.handleSearchOnSubmit.bind(this) }
+                />
+              </Col>
+
+              <Col xs={12} sm={6}>
+                <CategorySelect
+                  initialValues={ { videoCategory: this.props.selectedVideoCategory } }
+                  categories={ this.props.videoCategories }
+                  onSubmit={ this.handleCategoryOnSelect.bind(this) }
+                />
+              </Col>
+            </Row>
+          </Container>
+
           <Route exact path="/" component={ Home }/>
           <Route path="/videos/:id" component={ VideoProfile }/>
         </BrowserRouter>
       </div>
     );
+  }
+
+  handleCategoryOnSelect(values) {
+    this.props.selectVideoCategory(values.videoCategory);
+  }
+
+  handleSearchOnSubmit(values) {
+    this.props.searchVideoQuery(values.search);
   }
 }
 

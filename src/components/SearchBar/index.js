@@ -1,9 +1,9 @@
 import React                   from 'react';
 import { Field, Form, Formik } from "formik";
-import { Row, Col }            from "../../../components/external/Grid";
-import { AutocompleteField }   from "./AutocompleteField";
+import { Row, Col }            from "../external/Grid";
+import { SearchField }         from "./SearchField";
 
-export const CategorySelect = ({ initialValues, categories, onSubmit }) => {
+export const Searchbar = ({ initialValues, onSubmit }) => {
   return (
     <Formik
       initialValues={ initialValues }
@@ -23,17 +23,16 @@ export const CategorySelect = ({ initialValues, categories, onSubmit }) => {
                   isSubmitting
                 }) => (
         <Form onSubmit={ handleSubmit }>
-          <Row noGutters>
-            <Col lg={ { span: 3, offset: 4 } } className="mt-2">
-              <span className="ml-5">Most popular from:</span>
+          <Row>
+            <Col lg={ 3 } className="mt-2">
+              <span className="text-left">Search videos:</span>
             </Col>
 
-            <Col xs={ 12 } sm={ 12 } lg={ 5 }>
+            <Col xs={ 12 } sm={ 12 } lg={ 9 }>
               <Field
-                name='videoCategory'
-                label='Categories'
-                options={ categories }
-                component={ AutocompleteField }
+                name='search'
+                label='Search videos'
+                component={ SearchField }
                 isMulti={ false }
               />
             </Col>

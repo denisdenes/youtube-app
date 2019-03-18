@@ -28,7 +28,7 @@ class VideoProfileClass extends React.Component {
       <Container>
         <Row className="my-2">
           <Col xs={ 12 }>
-            <Link to="/">Back</Link>
+            <Link to="/"><span style={{textDecoration: 'underline'}}>Back</span></Link>
           </Col>
         </Row>
 
