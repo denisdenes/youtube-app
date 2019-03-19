@@ -34,10 +34,6 @@ class VideoProfileClass extends React.Component {
 
         <Row className="my-2">
           <Col xs={ 12 }>
-            <h2>{ snippet.title }</h2>
-          </Col>
-
-          <Col xs={ 12 }>
             <div className="embed-responsive embed-responsive-16by9">
               <iframe
                 className="embed-responsive-item"
@@ -46,8 +42,12 @@ class VideoProfileClass extends React.Component {
             </div>
           </Col>
 
+          <Col xs={ 12 } className="my-2">
+            <h2>{ snippet.title }</h2>
+          </Col>
+
           <Col xs={ 12 }>
-            <p>Views: { statistics.viewCount } </p>
+            <p>{ statistics.viewCount } views</p>
           </Col>
 
           <Col xs={ 12 }>

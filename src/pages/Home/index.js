@@ -1,34 +1,17 @@
-import React                          from 'react';
-import { connect }                    from 'react-redux';
-import { Container, Row, Col }        from "../../components/external/Grid";
-import { Spinner }                    from "../../components/Spinner";
-import { VideoCard }                  from "../../components/VideoCard";
-import { getVideoCategories }         from "../../data/actions/videoCategories";
-import { getVideos, getSearchVideos } from "../../data/actions/videos";
+import React                   from 'react';
+import { connect }             from 'react-redux';
+import { Container, Row, Col } from "../../components/external/Grid";
+import { VideoCard }           from "../../components/VideoCard";
 
 class HomeClass extends React.Component {
-  state = { loading: true };
-
-  componentDidMount() {
-    const { selectedVideoCategory, getVideos, getVideoCategories } = this.props;
-
-    Promise.all([ getVideos(selectedVideoCategory.id), getVideoCategories() ])
-           .then(() => this.setState({ loading: false }))
-
-  }
-
-  componentDidUpdate(prevProps) {
-    if ( this.props.searchVideoQueryString !== prevProps.searchVideoQueryString ) {
-      this.props.getSearchVideos(this.props.searchVideoQueryString);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if ( this.props.searchVideoQueryString !== prevProps.searchVideoQueryString ) {
+  //     this.props.getSearchVideos(this.props.searchVideoQueryString);
+  //   }
+  // }
 
   render() {
     const { videos } = this.props;
-
-    if ( this.state.loading ) {
-      return <Spinner/>;
-    }
 
     return (
       <>
@@ -68,13 +51,10 @@ class HomeClass extends React.Component {
   };
 }
 
-const mapStateToProps = ({ searchVideoQuery, selectedVideoCategory, videos, videoCategories }) => {
+const mapStateToProps = ({ videos }) => {
   return {
-    searchVideoQueryString: searchVideoQuery,
-    selectedVideoCategory,
-    videos:                 videos.data,
-    videoCategories:        videoCategories.data
+    videos: videos.data
   }
 };
 
-export const Home = connect(mapStateToProps, { getVideos, getVideoCategories, getSearchVideos })(HomeClass);
+export const Home = connect(mapStateToProps, null)(HomeClass);
