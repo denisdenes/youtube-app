@@ -64,6 +64,7 @@ export const getSearchVideos = (query) => {
       const res = await youtubeAxios.get('/search', {
         params: {
           maxResults: 10,
+          type: 'video',
           q: query
         }
       });
