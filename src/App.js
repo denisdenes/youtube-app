@@ -76,7 +76,7 @@ class AppClass extends Component {
 
   handleSearchOnSubmit(values) {
     history.push('/');
-    this.props.searchVideoQuery(values.search);
+    this.props.getSearchVideos(values.search);
   }
 }
 

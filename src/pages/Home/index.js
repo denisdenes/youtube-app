@@ -27,7 +27,19 @@ class HomeClass extends React.Component {
   display_videos(videos) {
     return (
       videos.map(video => {
-        if ( video && video.snippet ) {
+        if ( video.kind === 'youtube#searchResult' ) {
+          return (
+            <Col xs={ 12 } sm={ 6 } md={ 4 } lg={ 3 } key={ Math.random() }>
+              <VideoCard
+                thumbnail={ video.snippet.thumbnails.medium.url }
+                author={ video.snippet.channelTitle }
+                title={ video.snippet.title }
+                id={ video.id.videoId }
+                key={ Math.random() }
+              />
+            </Col>
+          );
+        } else if ( video.kind === 'youtube#video' )
           return (
             <Col xs={ 12 } sm={ 6 } md={ 4 } lg={ 3 } key={ Math.random() }>
               <VideoCard
@@ -39,7 +51,6 @@ class HomeClass extends React.Component {
               />
             </Col>
           );
-        }
       })
     )
   }
